@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/scss/bootstrap';
+
+body, html {
+    height: 100%;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+* {
+    font-family: Cairo, sans-serif !important; 
+  }

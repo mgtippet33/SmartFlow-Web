@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: WelcomePageComponent, data: {title: 'Welcome Page', url: '/'}},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
