@@ -8,6 +8,15 @@ html {
     overflow-x: hidden;
 }
 
+body{
+    height: 100%;
+    background-image: url('assets/img/background.svg'); 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
 * {
     font-family: Cairo, sans-serif !important; 
   }

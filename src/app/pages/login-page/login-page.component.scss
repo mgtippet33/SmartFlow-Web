@@ -1,13 +1,18 @@
-.lead{
-    margin:  30px;
-
+.customBackground{
+    height: 100%;
+    background-image: url('./pictures/background.svg'); 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
 }
 
-.title {
-    padding-top: 12%;
-    font-family: Cairo;
-    font-size: 10.5rem;
+h1 {
     font-weight: 300;
+  }
+
+.pacific {
+    background-color: #A8DADC;
 }
 
 .loginButton {
@@ -16,7 +21,6 @@
     border-radius: 15px;
     width: 180.23px;
     height: 57px;
-    margin-right: 2.5%;
     font-family: 'Cairo', sans-serif;
     font-weight: 300;
     font-size: 20px;
@@ -28,7 +32,6 @@
     border-radius: 15px;
     width: 180.23px;
     height: 57px;
-    margin-left: 2.5%;
     font-family: 'Cairo', sans-serif;
     font-weight: 300;
     font-size: 20px;
