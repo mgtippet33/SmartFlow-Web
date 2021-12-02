@@ -29,4 +29,10 @@ export class HttpService {
         var login_url = ApiConstants.main_url.toString() + ApiConstants.login_url.toString()
         return this.http.post(login_url, body, { 'headers': headers, observe: 'response' });
     }
+
+    getEvents(token: string) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var event_url = ApiConstants.main_url.toString() + ApiConstants.event_url.toString()
+        return this.http.get(event_url, { 'headers': headers, observe: 'response' });
+    }
 }

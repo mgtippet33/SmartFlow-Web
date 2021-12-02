@@ -16,7 +16,6 @@ export class RegisterPageComponent implements OnInit {
     form: FormGroup;
     email: FormControl;
     username: FormControl;
-    birthday: FormControl;
     password: FormControl;
     confirmPassword: FormControl;
 
@@ -27,8 +26,6 @@ export class RegisterPageComponent implements OnInit {
             CommonValidators.noWhiteSpace, CommonValidators.emailPattern]);
         this.username = new FormControl('', [Validators.required,
             CommonValidators.noWhiteSpace, Validators.minLength(3)]);
-        this.birthday = new FormControl('', [ Validators.required,
-            CommonValidators.datePattern]);
         this.password = new FormControl('', [Validators.required,
             CommonValidators.noWhiteSpace, CommonValidators.passwordPattern]);
         this.confirmPassword = new FormControl('', [Validators.required,
@@ -37,7 +34,6 @@ export class RegisterPageComponent implements OnInit {
         this.form = new FormGroup({
             Email: this.email,
             Username: this.username,
-            Birthday: this.birthday,
             Password: this.password,
             ConfirmPassword: this.confirmPassword,
         });
@@ -56,8 +52,8 @@ export class RegisterPageComponent implements OnInit {
         };
         this.httpService.registerUser(this.user)
             .subscribe((data: any) =>{
-                if (data['status'] as number == 201) {
-                    this.router.navigateByUrl('/login');
+                if (data['status'] == 201) {
+                    this.router.navigateByUrl('login');
                 }
             });
     }
