@@ -93,8 +93,49 @@
 }
 
 fa-icon{
-    margin-top: 6px;
+    margin-top: 3px;
     padding: 4px;
     font-size: 34px;
+    color: rgba(0, 0, 0, 0.74);;
+  }
+
+  .closeFaTimes {
     color: black;
+    font-size: 21px;
+  }
+  
+  
+  .closeButtonTimes {
+  background-color: #FFDC97;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .sendButton {
+    background-color: #50E08A;
+    border: none;
+    border-radius: 15px;
+    width: 180.23px;
+    height: 57px;
+    margin-right: 2.5%;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+  }
+  
+  .hintButton {
+    background-color: #FFDC97;
+    border: none;
+    border-radius: 15px;
+    width: 180.23px;
+    height: 57px;
+    margin-left: 2.5%;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
   }

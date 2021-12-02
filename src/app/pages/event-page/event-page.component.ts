@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/api/http.service';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { MyEvent } from 'src/app/Models/event';
 import { CookieService } from 'src/app/services/cookie-service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
     selector: 'app-event-page',
@@ -15,21 +16,13 @@ import { CookieService } from 'src/app/services/cookie-service';
 export class EventPageComponent implements OnInit {
 
     faPlusSquare = faPlusSquare;
+    faTimes = faTimes;
     searchValue = '';
     searchValueControl: FormControl;
     token: string;
-    events: Array<MyEvent> = [
-        {  name: "Event 1", description: "Descraption Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt tristique libero. Maecenas tempus, leo nec lacinia consectetur, nibh tortor.", image: null, coordinates: null, openTime: null, closeTime: null } as MyEvent,
-        {  name: "Event 2", description: "Description 2", image: null, coordinates: null, openTime: null, closeTime: null } as MyEvent,
-        {  name: "Event 3", description: "Description 3", image: null, coordinates: null, openTime: null, closeTime: null } as MyEvent,
-        {  name: "Event 4", description: "Description 4", image: null, coordinates: null, openTime: null, closeTime: null } as MyEvent,
-        {  name: "Event 5", description: "Description 5", image: null, coordinates: null, openTime: null, closeTime: null } as MyEvent,
-        {  name: "Event 6", description: "Description 6", image: null, coordinates: null, openTime: null, closeTime: null } as MyEvent,
-        {  name: "Event 7", description: "Description 7", image: null, coordinates: null, openTime: null, closeTime: null } as MyEvent,
-        {  name: "Event 8", description: "Description 8", image: null, coordinates: null, openTime: null, closeTime: null } as MyEvent,
-        {  name: "Event 9", description: "Description 9", image: null, coordinates: null, openTime: null, closeTime: null } as MyEvent
-    ];
+    events: Array<MyEvent>;
     searchEvents: Array<MyEvent>;
+    currentEventID: number;
 
     constructor(private router: Router, private httpService: HttpService) { }
 
@@ -68,15 +61,27 @@ export class EventPageComponent implements OnInit {
     }
     
     onCreateClick() {
-        
+        this.router.navigateByUrl("/event/create");
     }
 
-    onEditClick() {
+    onEditClick(eventID: number) {
+        this.router.navigateByUrl(`/event/edit/${eventID}`);
+    }
 
+    onOpenRemoveModal(eventID: number) {
+        var removeModal = new bootstrap.Modal(document.getElementById("removeEventModal"), {
+            keyboard: false
+        });
+        removeModal?.show();
+        this.currentEventID = eventID;
     }
 
     onRemoveClick() {
-        
+        this.httpService.deleteEvent(this.token, this.currentEventID).subscribe(
+            (data: any) => {
+                this.ngOnInit();
+            }
+        );
     }
 
 }

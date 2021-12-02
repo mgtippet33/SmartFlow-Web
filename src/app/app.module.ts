@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/app-header.component';
 import { EventPageComponent } from './pages/event-page/event-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EventViewPageComponent } from './pages/eventViewPage/eventViewPage.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginPageComponent,
     RegisterPageComponent,
     EventPageComponent,
+    EventViewPageComponent,
   ],
   imports: [
     BrowserModule,

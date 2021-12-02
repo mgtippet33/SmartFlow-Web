@@ -2,6 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiConstants } from "./ApiConstants";
 import { User } from "../Models/user";
+import { MyEvent } from "../Models/event";
+import { Location } from "../Models/location";
+
 
 @Injectable()
 export class HttpService {
@@ -30,9 +33,101 @@ export class HttpService {
         return this.http.post(login_url, body, { 'headers': headers, observe: 'response' });
     }
 
-    getEvents(token: string) {
+    createEvent(token: string, event: MyEvent) {
         const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        const body = {
+            name: event.name,
+            description: event.description,
+            image: event.image,
+            coordinates: event.coordinates,
+            openTime: event.openTime,
+            closeTime: event.closeTime
+        };
         var event_url = ApiConstants.main_url.toString() + ApiConstants.event_url.toString()
+        return this.http.post(event_url, body, { 'headers': headers, observe: 'response' });
+    }
+
+    getEvents(token: string, eventID: number = null) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var event_url = ApiConstants.main_url.toString() + ApiConstants.event_url.toString();
+        if (eventID != null) {
+            event_url += eventID.toString();
+        }
         return this.http.get(event_url, { 'headers': headers, observe: 'response' });
+    }
+
+    updateEvent(token: string, event: MyEvent) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        const body = {
+            name: event.name,
+            description: event.description,
+            image: event.image,
+            coordinates: event.coordinates,
+            openTime: event.openTime,
+            closeTime: event.closeTime
+        };
+        var event_url = ApiConstants.main_url.toString() + ApiConstants.event_url.toString() + event.event_id.toString() + "/"
+        return this.http.put(event_url, body, { 'headers': headers, observe: 'response' });
+    }
+
+    deleteEvent(token: string, eventID: number) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var event_url = ApiConstants.main_url.toString() + ApiConstants.event_url.toString() + eventID.toString() + "/"
+        return this.http.delete(event_url, { 'headers': headers, observe: 'response' });
+    }
+
+    createLocation(token: string, location: Location) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        const body = {
+            eventID: location.event_id,
+            name: location.name,
+            description: location.description,
+            state: location.state
+        };
+        var location_url = ApiConstants.main_url.toString() + ApiConstants.location_url.toString()
+        return this.http.post(location_url, body, { 'headers': headers, observe: 'response' });
+    }
+
+    getLocations(token: string, locationID: number = null) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var location_url = ApiConstants.main_url.toString() + ApiConstants.location_url.toString()
+        if (locationID != null) {
+            location_url += locationID.toString();
+        }
+        return this.http.get(location_url, { 'headers': headers, observe: 'response' });
+    }
+    
+    getLocationByEvent(token: string, eventID: number) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var location_url = ApiConstants.main_url.toString() +
+            ApiConstants.locationByEvent_url.toString() +
+            eventID.toString();
+        return this.http.get(location_url, { 'headers': headers, observe: 'response' });
+    }
+
+    updateLocation(token: string, location: Location) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        const body = {
+            eventID: location.event_id,
+            name: location.name,
+            description: location.description,
+            state: location.state
+        };
+        var location_url = ApiConstants.main_url.toString() + 
+            ApiConstants.event_url.toString() + location.location_id.toString() + "/"
+        return this.http.put(location_url, body, { 'headers': headers, observe: 'response' });
+    }
+
+    deleteLocation(token: string, locationID: number) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var location_url = ApiConstants.main_url.toString() + 
+            ApiConstants.event_url.toString() + locationID.toString() + "/"
+        return this.http.delete(location_url, { 'headers': headers, observe: 'response' });
+    }
+
+    uploadImage(image: string) {
+        var body = new FormData();
+        body.append('image', image);
+        return this.http.post(ApiConstants.img_upload_url, body);
     }
 }

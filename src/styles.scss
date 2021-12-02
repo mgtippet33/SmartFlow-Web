@@ -16,6 +16,11 @@ body{
     background-size: cover;
 }
 
+input[type=submit] {
+    color: black;
+    background-color: #ff9100cb;
+}
+
 * {
     font-family: Cairo, sans-serif !important; 
   }
