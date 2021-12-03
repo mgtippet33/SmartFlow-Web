@@ -17,6 +17,8 @@ import { EventViewPageComponent } from './pages/eventViewPage/eventViewPage.comp
 import { LocationPageComponent } from './pages/location-page/location-page.component';
 import { ItemPageComponent } from './pages/item-page/item-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { QRCodeModule } from 'angular2-qrcode';
+import { ItemQrcodePageComponent } from './pages/item-qrcode-page/item-qrcode-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
     LocationPageComponent,
     ItemPageComponent,
     ProfilePageComponent,
+    ItemQrcodePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
+    QRCodeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

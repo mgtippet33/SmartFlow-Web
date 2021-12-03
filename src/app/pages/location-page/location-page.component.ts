@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/api/http.service';
 import { CookieService } from 'src/app/services/cookie-service';
 import { Location } from 'src/app/Models/location';
-import { faEdit, faPlusSquare, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faPlusSquare, faQrcode, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Item } from 'src/app/Models/item';
 import * as bootstrap from 'bootstrap';
 
@@ -20,6 +20,7 @@ export class LocationPageComponent implements OnInit {
     faPlusSquare = faPlusSquare;
     faEdit = faEdit;
     faTrash = faTrash;
+    faQRCode = faQrcode;
     form: FormGroup;
     token: string;
     isCreateAction: boolean;
@@ -176,5 +177,8 @@ export class LocationPageComponent implements OnInit {
         );
     }
 
+    onGetItemQRCodelick(itemID: number) {
+        window.open(window.location.origin + `/item/qrcode/${itemID}`, '_blank' );
+    }
 
 }
