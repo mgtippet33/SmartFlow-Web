@@ -36,3 +36,20 @@ h1 {
     font-weight: 300;
     font-size: 20px;
   }
+
+  .closeFaTimes {
+    color: black;
+    font-size: 21px;
+  }
+  
+  
+  .closeButtonTimes {
+    background-color: #FFDC97;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

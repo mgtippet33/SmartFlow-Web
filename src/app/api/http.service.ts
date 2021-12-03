@@ -34,6 +34,31 @@ export class HttpService {
         return this.http.post(login_url, body, { 'headers': headers, observe: 'response' });
     }
 
+    getProfile(token: string) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var profile_url = ApiConstants.main_url.toString() + ApiConstants.profile_url.toString()
+        return this.http.get(profile_url, { 'headers': headers, observe: 'response' });
+    }
+
+    updateUserProfile(token: string, user: User) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var body;
+        if (user.password != null) {
+            body = {
+                email: user.email,
+                name: user.username,
+                password: user.password
+            };
+        } else {
+            body = {
+                email: user.email,
+                name: user.username
+            };
+        }
+        var profile_url = ApiConstants.main_url.toString() + ApiConstants.profile_url.toString()
+        return this.http.put(profile_url, body, { 'headers': headers, observe: 'response' });
+    }
+
     createEvent(token: string, event: MyEvent) {
         const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
         const body = {
