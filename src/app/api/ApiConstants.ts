@@ -4,6 +4,8 @@ export enum ApiConstants {
     login_url = "signIn/",
     event_url = "api/event/",
     location_url = "api/location/",
-    locationByEvent_url = "api/location/event/",
+    locationsByEvent_url = "api/location/event/",
+    item_url = "api/item/",
+    itemsByLocation_url = "api/item/location/",
     img_upload_url = "https://api.imgbb.com/1/upload?key=c13f2cc3b54160c8113adbfc2ad82046"
   }

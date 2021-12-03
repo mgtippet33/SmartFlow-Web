@@ -33,6 +33,7 @@ export class EventViewPageComponent implements OnInit {
     map: any;
     markers: google.maps.Marker[] = [];
     locations: Array<Location>;
+    currentLocationID: number;
 
 
     constructor(private router: Router, private httpService: HttpService,
@@ -74,7 +75,7 @@ export class EventViewPageComponent implements OnInit {
                     }
                 );
 
-                this.httpService.getLocationByEvent(this.token, eventID).subscribe(
+                this.httpService.getLocationsByEvent(this.token, eventID).subscribe(
                     (data: any) => {
                         data = data['body'];
                         var locations = new Array<Location>();
@@ -256,6 +257,29 @@ export class EventViewPageComponent implements OnInit {
         var latLng = new google.maps.LatLng(parseFloat(coord[0]),
             parseFloat(coord[1]));
         this.setMarker(latLng);
+    }
+
+    onCreateLocationClick() {
+        this.router.navigateByUrl(`event/${this.event.event_id}/location/create`);
+    }
+
+    onEditClick(locationID: number) {
+        this.router.navigateByUrl(`location/edit/${locationID}`);
+    }
+
+    onOpenRemoveModal(locationID: number) {
+        var removeModal = new bootstrap.Modal(document.getElementById('removeModal'), {
+            keyboard: false
+        });
+        removeModal?.show();
+        this.currentLocationID = locationID;
+    }
+
+    onRemoveClick() {
+        this.httpService.deleteLocation(this.token, this.currentLocationID)
+            .subscribe((data: any) => {
+                this.ngOnInit();
+            });
     }
     
 }

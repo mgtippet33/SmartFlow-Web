@@ -1,0 +1,99 @@
+<app-header></app-header>
+<div class="row">
+    <p class="title">Location</p>
+</div>
+<div class="wrapper pb-4">
+    <form [formGroup]="form">
+        <div class="field">
+            <p>Location Name</p>
+            <input type="text" formControlName="LocationName">
+        </div>
+        <div class="field">
+            <p>Description</p>
+            <textarea rows="5" formControlName="Description"></textarea> 
+        </div>
+        <div class="field">
+            <p>State</p>
+            <select class="state-select" formControlName="State">
+                <option disabled selected>Choose state</option>
+                <option value="open">Open</option>
+                <option value="close">Close</option>
+            </select>
+        </div>
+        <button class="apply" *ngIf="isCreateAction"(click)="onCreateLocationClick()">Create</button>
+        <button class="apply" *ngIf="!isCreateAction"(click)="onEditLocationClick()">Apply changes</button>
+    </form>
+</div>
+
+<div class="container padding-bottom-5" *ngIf="!isCreateAction">
+    <div class="itemBackground">
+        <div class="row mt-3">
+            <div class="col margin-left-4">
+                <a class="create-item" (click)="onCreateItemClick()">
+                    <fa-icon [icon]="faPlusSquare"></fa-icon>
+                </a>
+            </div>
+        </div>
+        <div class="item-block" *ngFor="let item of items">
+            <div class="row">
+                <div class="col-3">
+                    <h4 class="name mt-4">{{item.name}}</h4>
+                </div>
+                <div class="col-8 d-flex justify-content-end">
+                    <a class="mt-3" (click)="onEditItemClick(item.item_id)">
+                        <fa-icon class="control-icon" [icon]="faEdit"></fa-icon>
+                    </a>
+                    <a class="mt-3" (click)="onOpenRemoveModal(item.item_id)">
+                        <fa-icon class="control-icon" [icon]="faTrash"></fa-icon>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10 justify-content-start">
+                    <h6 class="description mt-3 ml-3 mb-3">{{item.description}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-centred modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notificationModalLongTitle">Notification</h5>
+                <button class="closeButtonTimes" data-bs-dismiss="modal" aria-label="Close">
+                    <fa-icon class="closeFaTimes" [icon]="faTimes"></fa-icon>
+                </button>
+            </div>
+            <div class="modal-body justify-content-center">
+                {{notification}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Remove Modal -->
+<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-centred modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removeModalLongTitle">Remove Item</h5>
+                <button class="closeButtonTimes" data-bs-dismiss="modal" aria-label="Close">
+                    <fa-icon class="closeFaTimes" [icon]="faTimes"></fa-icon>
+                </button>
+            </div>
+            <div class="modal-body justify-content-center">
+                <p class="resultText">Are you sure you want to remove this item?</p>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="yesButton" data-bs-dismiss="modal"
+                    (click)="onRemoveItemClick()">Yes</button>
+                    <button type="button" class="noButton" data-bs-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

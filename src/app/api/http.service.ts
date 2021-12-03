@@ -4,6 +4,7 @@ import { ApiConstants } from "./ApiConstants";
 import { User } from "../Models/user";
 import { MyEvent } from "../Models/event";
 import { Location } from "../Models/location";
+import { Item } from "../Models/item";
 
 
 @Injectable()
@@ -51,7 +52,7 @@ export class HttpService {
         const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
         var event_url = ApiConstants.main_url.toString() + ApiConstants.event_url.toString();
         if (eventID != null) {
-            event_url += eventID.toString();
+            event_url += eventID.toString() + "/";
         }
         return this.http.get(event_url, { 'headers': headers, observe: 'response' });
     }
@@ -92,16 +93,16 @@ export class HttpService {
         const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
         var location_url = ApiConstants.main_url.toString() + ApiConstants.location_url.toString()
         if (locationID != null) {
-            location_url += locationID.toString();
+            location_url += locationID.toString() + "/";
         }
         return this.http.get(location_url, { 'headers': headers, observe: 'response' });
     }
     
-    getLocationByEvent(token: string, eventID: number) {
+    getLocationsByEvent(token: string, eventID: number) {
         const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
         var location_url = ApiConstants.main_url.toString() +
-            ApiConstants.locationByEvent_url.toString() +
-            eventID.toString();
+            ApiConstants.locationsByEvent_url.toString() +
+            eventID.toString() + "/";
         return this.http.get(location_url, { 'headers': headers, observe: 'response' });
     }
 
@@ -114,15 +115,64 @@ export class HttpService {
             state: location.state
         };
         var location_url = ApiConstants.main_url.toString() + 
-            ApiConstants.event_url.toString() + location.location_id.toString() + "/"
+            ApiConstants.location_url.toString() + location.location_id.toString() + "/"
         return this.http.put(location_url, body, { 'headers': headers, observe: 'response' });
     }
 
     deleteLocation(token: string, locationID: number) {
         const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
         var location_url = ApiConstants.main_url.toString() + 
-            ApiConstants.event_url.toString() + locationID.toString() + "/"
+            ApiConstants.location_url.toString() + locationID.toString() + "/"
         return this.http.delete(location_url, { 'headers': headers, observe: 'response' });
+    }
+
+    createItem(token: string, item: Item) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        const body = {
+            locationID: item.location_id,
+            name: item.name,
+            description: item.description,
+            link: item.link
+        };
+        var item_url = ApiConstants.main_url.toString() + ApiConstants.item_url.toString()
+        return this.http.post(item_url, body, { 'headers': headers, observe: 'response' });
+    }
+
+    getItems(token: string, itemID: number = null) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var item_url = ApiConstants.main_url.toString() + ApiConstants.item_url.toString()
+        if (itemID != null) {
+            item_url += itemID.toString() + "/";
+        }
+        return this.http.get(item_url, { 'headers': headers, observe: 'response' });
+    }
+    
+    getItemsByLocation(token: string, locationID: number) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var item_url = ApiConstants.main_url.toString() +
+            ApiConstants.itemsByLocation_url.toString() +
+            locationID.toString() + "/";
+        return this.http.get(item_url, { 'headers': headers, observe: 'response' });
+    }
+
+    updateItem(token: string, item: Item) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        const body = {
+            locationID: item.location_id,
+            name: item.name,
+            description: item.description,
+            link: item.link
+        };
+        var item_url = ApiConstants.main_url.toString() +
+            ApiConstants.item_url.toString() + item.item_id.toString() + "/";
+        return this.http.put(item_url, body, { 'headers': headers, observe: 'response' });
+    }
+
+    deleteItem(token: string, itemID: number) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var item_url = ApiConstants.main_url.toString() + 
+            ApiConstants.item_url.toString() + itemID.toString() + "/"
+        return this.http.delete(item_url, { 'headers': headers, observe: 'response' });
     }
 
     uploadImage(image: string) {

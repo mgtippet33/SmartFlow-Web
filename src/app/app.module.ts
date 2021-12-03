@@ -14,6 +14,7 @@ import { HeaderComponent } from './components/header/app-header.component';
 import { EventPageComponent } from './pages/event-page/event-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EventViewPageComponent } from './pages/eventViewPage/eventViewPage.component';
+import { LocationPageComponent } from './pages/location-page/location-page.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { EventViewPageComponent } from './pages/eventViewPage/eventViewPage.comp
     RegisterPageComponent,
     EventPageComponent,
     EventViewPageComponent,
+    LocationPageComponent,
   ],
   imports: [
     BrowserModule,
