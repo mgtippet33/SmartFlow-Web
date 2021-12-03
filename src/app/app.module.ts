@@ -19,6 +19,8 @@ import { ItemPageComponent } from './pages/item-page/item-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { ItemQrcodePageComponent } from './pages/item-qrcode-page/item-qrcode-page.component';
+import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { ItemQrcodePageComponent } from './pages/item-qrcode-page/item-qrcode-pa
     ItemPageComponent,
     ProfilePageComponent,
     ItemQrcodePageComponent,
+    StatisticPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { ItemQrcodePageComponent } from './pages/item-qrcode-page/item-qrcode-pa
     HttpClientModule,
     FontAwesomeModule,
     QRCodeModule,
+    NgApexchartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

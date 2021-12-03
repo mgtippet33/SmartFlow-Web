@@ -8,6 +8,7 @@ import { LocationPageComponent } from './pages/location-page/location-page.compo
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'item/edit/:itemID', component: ItemPageComponent, data: {title: 'Item Page', url: '/'}},
   {path: 'profile', component: ProfilePageComponent, data: {title: 'Account Page', url: '/'}},
   {path: 'item/qrcode/:itemID', component: ItemQrcodePageComponent, data: {title: 'Item QR Code Page', url: '/'}},
+  {path: 'statistics', component: StatisticPageComponent, data: {title: 'Statistics Page', url: '/'}},
 ];
 
 @NgModule({

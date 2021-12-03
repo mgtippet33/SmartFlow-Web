@@ -207,4 +207,18 @@ export class HttpService {
         body.append('image', image);
         return this.http.post(ApiConstants.img_upload_url, body);
     }
+
+    getEventStatistics(token: string) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var statistics_url = ApiConstants.main_url.toString() + 
+            ApiConstants.statistics_url.toString();
+        return this.http.get(statistics_url, {'headers': headers, observe: 'response'});
+    }
+
+    getLocationStatisticsByEvent(token: string, eventID: number) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var statistics_url = ApiConstants.main_url.toString() + 
+            ApiConstants.statistics_url.toString() + eventID.toString() + "/";
+        return this.http.get(statistics_url, {'headers': headers, observe: 'response'});
+    }
 }

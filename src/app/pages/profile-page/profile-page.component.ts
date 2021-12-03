@@ -40,7 +40,6 @@ export class ProfilePageComponent implements OnInit {
 				this.user.email = data['email'];
 				this.user.username = data['name'];
 
-				// this.user = user;
 				this.initializeData();
 			}
 		);
@@ -82,11 +81,11 @@ export class ProfilePageComponent implements OnInit {
                     this.ngOnInit();
                 }
             },
-			// (error: any) => {
-			// 	console.log(error);
-			// 	this.notification = "An account with such data already exists.";
-			// 	this.openNotificationModal();
-			// }
+			(error: any) => {
+				console.log(error);
+				this.notification = "An account with such data already exists.";
+				this.openNotificationModal();
+			}
         );
 	}
 
