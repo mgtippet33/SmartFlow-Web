@@ -132,6 +132,7 @@ export class HttpService {
             locationID: item.location_id,
             name: item.name,
             description: item.description,
+            image: item.image,
             link: item.link
         };
         var item_url = ApiConstants.main_url.toString() + ApiConstants.item_url.toString()
@@ -161,6 +162,7 @@ export class HttpService {
             locationID: item.location_id,
             name: item.name,
             description: item.description,
+            image: item.image,
             link: item.link
         };
         var item_url = ApiConstants.main_url.toString() +

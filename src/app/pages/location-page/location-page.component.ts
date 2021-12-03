@@ -86,6 +86,7 @@ export class LocationPageComponent implements OnInit {
                     item.location_id = data[i]['locationID'];
                     item.name = data[i]['name'];
                     item.description = data[i]['description'];
+                    item.image = data[i]['image'];
                     item.link = data[i]['link'];
 
                     items.push(item);
@@ -152,11 +153,11 @@ export class LocationPageComponent implements OnInit {
     }
 
     onCreateItemClick() {
-
+        this.router.navigateByUrl(`location/${this.location.location_id}/item/create`);
     }
 
     onEditItemClick(itemID: number) {
-
+        this.router.navigateByUrl(`item/edit/${itemID}`);
     }
 
     onOpenRemoveModal(itemID: number) {

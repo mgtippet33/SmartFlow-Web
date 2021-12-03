@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EventPageComponent } from './pages/event-page/event-page.component';
 import { EventViewPageComponent } from './pages/eventViewPage/eventViewPage.component';
+import { ItemPageComponent } from './pages/item-page/item-page.component';
 import { LocationPageComponent } from './pages/location-page/location-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path: 'event/create', component: EventViewPageComponent, data: {title: 'Event Page', url: '/'}},
   {path: 'event/:eventID/location/create', component: LocationPageComponent, data: {title: 'Location Page', url: '/'}},
   {path: 'location/edit/:locationID', component: LocationPageComponent, data: {title: 'Location Page', url: '/'}},
+  {path: 'location/:locationID/item/create', component: ItemPageComponent, data: {title: 'Item Page', url: '/'}},
+  {path: 'item/edit/:itemID', component: ItemPageComponent, data: {title: 'Item Page', url: '/'}},
 ];
 
 @NgModule({

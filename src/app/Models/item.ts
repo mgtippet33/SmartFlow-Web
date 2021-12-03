@@ -3,5 +3,6 @@ export class Item {
     public location_id: number;
     public name: string;
     public description: string;
+    public image: string;
     public link: string;
 }

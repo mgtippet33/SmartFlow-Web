@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="row">
+    <p class="title">Item</p>
+</div>
+<input type="file" id="changeImage" accept="image/*" style="visibility: hidden;" 
+    (change)="onFileChanged($event)" aria-hidden="true"/>
+<div class="wrapper pb-4">
+    <div class="image-block justify-content-center">
+        <div class="image" style="margin: 0 auto;" [style.background-image]="'url(' + item.image + ')'"></div>
+        <label class="settings-button" for="changeImage">Select image</label>
+    </div>
+    <form [formGroup]="form">
+        <div class="field">
+            <p>Item Name</p>
+            <input type="text" formControlName="ItemName">
+        </div>
+        <div class="field">
+            <p>Description</p>
+            <textarea rows="5" formControlName="Description"></textarea> 
+        </div>
+        <div class="field">
+            <p>Information Link</p>
+            <input type="text" formControlName="Link">
+        </div>
+        <button class="apply" *ngIf="isCreateAction"(click)="onCreateItemClick()">Create</button>
+        <button class="apply" *ngIf="!isCreateAction"(click)="onEditItemClick()">Apply changes</button>
+    </form>
+</div>
+
+<!-- Notification Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-centred modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notificationModalLongTitle">Notification</h5>
+                <button class="closeButtonTimes" data-bs-dismiss="modal" aria-label="Close">
+                    <fa-icon class="closeFaTimes" [icon]="faTimes"></fa-icon>
+                </button>
+            </div>
+            <div class="modal-body justify-content-center">
+                {{notification}}
+            </div>
+        </div>
+    </div>
+</div>
