@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/app-header.component';
@@ -23,6 +23,12 @@ import { StatisticPageComponent } from './pages/statistic-page/statistic-page.co
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { UserViewPageComponent } from './pages/user-view-page/user-view-page.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -52,6 +58,14 @@ import { UserViewPageComponent } from './pages/user-view-page/user-view-page.com
     FontAwesomeModule,
     QRCodeModule,
     NgApexchartsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      },
+      defaultLanguage: 'en'
+  })
   ],
   providers: [],
   bootstrap: [AppComponent]

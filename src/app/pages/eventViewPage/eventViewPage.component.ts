@@ -9,6 +9,7 @@ import { CookieService } from 'src/app/services/cookie-service';
 import { CommonValidators } from 'src/app/validators/common-validators';
 import * as bootstrap from 'bootstrap';
 import { Loader } from '@googlemaps/js-api-loader';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-event-view-page',
@@ -37,7 +38,7 @@ export class EventViewPageComponent implements OnInit {
 
 
     constructor(private router: Router, private httpService: HttpService,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute, public translate: TranslateService) { }
 
     ngOnInit(): void {
         this.form = new FormGroup({
@@ -109,7 +110,9 @@ export class EventViewPageComponent implements OnInit {
     onCreateEventClick() {
         if (!this.form?.valid || this.event.coordinates == null ||
             this.event.image == null) { 
-            this.notification = 'You must fill in all the details of the event.';
+            this.translate.get('EVENT.NOTIFICATION').subscribe(
+                (res: string) => this.notification = res
+            );
             this.openNotificationModal();
             return; 
         }
@@ -130,7 +133,9 @@ export class EventViewPageComponent implements OnInit {
     onEditEventClick() {
         if (!this.form?.valid || this.event.coordinates == null ||
             this.event.image == null) { 
-            this.notification = 'You must fill in all the details of the event.';
+                this.translate.get('EVENT.NOTIFICATION').subscribe(
+                    (res: string) => this.notification = res
+                );
             this.openNotificationModal();
             return; 
         }
@@ -158,7 +163,9 @@ export class EventViewPageComponent implements OnInit {
     onFileChanged(event: any) {
         var image = event.target.files[0]
         if(image.type.indexOf("image/") == -1) {
-            this.notification = 'You can only add photos to your profile.';
+            this.translate.get('NOTIFICATION.IMAGE').subscribe(
+                (res: string) => this.notification = res
+            );
             this.openNotificationModal();
             return;
         }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { TranslateService } from '@ngx-translate/core';
 import * as bootstrap from 'bootstrap';
 import { HttpService } from 'src/app/api/http.service';
 import { User } from 'src/app/Models/user';
@@ -21,7 +22,8 @@ export class ProfilePageComponent implements OnInit {
 	user: User = new User();
 	notification: string;
 
-	constructor(private router: Router, private httpService: HttpService) { }
+	constructor(private router: Router, private httpService: HttpService,
+		public translate: TranslateService) { }
 
 	ngOnInit(): void {
         this.form = new FormGroup({
@@ -64,7 +66,9 @@ export class ProfilePageComponent implements OnInit {
 	onChangeProfileDataClick() {
 		if (this.form.get("Email").value.length == 0 ||
 				this.form.get("Username").value.length == 0) {
-			this.notification = "If you want update your data, you must fill in all the details of the profile."
+					this.translate.get('ACCOUNT.NOTIFICATION').subscribe(
+						(res: string) => this.notification = res
+					);
 			this.openNotificationModal();
 			return;
 		}
@@ -83,7 +87,9 @@ export class ProfilePageComponent implements OnInit {
             },
 			(error: any) => {
 				console.log(error);
-				this.notification = "An account with such data already exists.";
+				this.translate.get('ACCOUNT.EXSIST').subscribe(
+					(res: string) => this.notification = res
+				);
 				this.openNotificationModal();
 			}
         );

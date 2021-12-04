@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="row">
-    <p class="title">Statistics</p>
+    <p class="title">{{ 'STATISTICS' | translate}}</p>
 </div>
 
 <div class="wrapper">
@@ -18,7 +18,7 @@
 </div>
 <div class="select-block text-end mt-3">
     <select class="event-select" [ngModel]="eventStatistics" (ngModelChange)="onChange($event)">
-        <option disabled>Select event</option>
+        <option disabled>{{ 'SELECT_EVENT' | translate }}</option>
         <option [value]="event.event_id" *ngFor="let event of eventStatistics">{{event.event_name}}</option>
     </select>
 </div>

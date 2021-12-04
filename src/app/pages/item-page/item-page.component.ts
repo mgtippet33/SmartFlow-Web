@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { TranslateService } from '@ngx-translate/core';
 import * as bootstrap from 'bootstrap';
 import { HttpService } from 'src/app/api/http.service';
 import { Item } from 'src/app/Models/item';
@@ -23,7 +24,7 @@ export class ItemPageComponent implements OnInit {
     notification: string;
 
     constructor(private router: Router, private httpService: HttpService,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute, public translate: TranslateService) { }
 
     ngOnInit(): void {
         this.form = new FormGroup({
@@ -91,7 +92,9 @@ export class ItemPageComponent implements OnInit {
     onFileChanged(event: any) {
         var image = event.target.files[0]
         if(image.type.indexOf("image/") == -1) {
-            this.notification = 'You can only add photos to your profile.';
+            this.translate.get('NOTIFICATION.IMAGE').subscribe(
+                (res: string) => this.notification = res
+            );
             this.openNotificationModal();
             return;
         }
@@ -105,7 +108,9 @@ export class ItemPageComponent implements OnInit {
 
     onCreateItemClick() {
         if (!this.form?.valid || this.item.image == null) { 
-            this.notification = 'You must fill in all the details of the item.';
+            this.translate.get('ITEM.NOTIFICATION').subscribe(
+                (res: string) => this.notification = res
+            );
             this.openNotificationModal();
             return; 
         }
@@ -124,7 +129,9 @@ export class ItemPageComponent implements OnInit {
 
     onEditItemClick() {
         if (!this.form?.valid || this.item.image == null) { 
-            this.notification = 'You must fill in all the details of the item.';
+            this.translate.get('ITEM.NOTIFICATION').subscribe(
+                (res: string) => this.notification = res
+            );
             this.openNotificationModal();
             return; 
         }

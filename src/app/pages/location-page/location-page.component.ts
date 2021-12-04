@@ -7,6 +7,7 @@ import { Location } from 'src/app/Models/location';
 import { faEdit, faPlusSquare, faQrcode, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Item } from 'src/app/Models/item';
 import * as bootstrap from 'bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-location-page',
@@ -30,7 +31,7 @@ export class LocationPageComponent implements OnInit {
     currentItemID: number;
 
     constructor(private router: Router, private httpService: HttpService,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute, public translate: TranslateService) { }
 
     ngOnInit(): void {
         this.form = new FormGroup({
@@ -117,7 +118,9 @@ export class LocationPageComponent implements OnInit {
     
     onCreateLocationClick() {
         if (!this.form?.valid) { 
-            this.notification = 'You must fill in all the details of the location.';
+            this.translate.get('LOCATION.NOTIFICATION').subscribe(
+                (res: string) => this.notification = res
+            );
             this.openNotificationModal();
             return; 
         }
@@ -136,7 +139,9 @@ export class LocationPageComponent implements OnInit {
 
     onEditLocationClick() {
         if (!this.form?.valid) { 
-            this.notification = 'You must fill in all the details of the location.';
+            this.translate.get('LOCATION.NOTIFICATION').subscribe(
+                (res: string) => this.notification = res
+            );
             this.openNotificationModal();
             return; 
         }

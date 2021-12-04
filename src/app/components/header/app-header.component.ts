@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { HttpService } from 'src/app/api/http.service';
 import { CookieService } from 'src/app/services/cookie-service';
 
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
 
     isAdmin: boolean = false;
 
-    constructor(private router: Router, private httpService: HttpService) {    }
+    constructor(private router: Router, private httpService: HttpService,
+        public translate: TranslateService) {    }
     
     ngOnInit(): void {
         var token = CookieService.getCookie('JWT_token');

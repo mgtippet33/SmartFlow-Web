@@ -1,27 +1,27 @@
 <app-header></app-header>
 <div class="row">
-    <p class="title">Location</p>
+    <p class="title">{{ 'LOCATION.TITLE' | translate}}</p>
 </div>
 <div class="wrapper pb-4">
     <form [formGroup]="form">
         <div class="field">
-            <p>Location Name</p>
+            <p>{{ 'LOCATION.NAME' | translate}}</p>
             <input type="text" formControlName="LocationName">
         </div>
         <div class="field">
-            <p>Description</p>
+            <p>{{ 'LOCATION.DESCRIPTION' | translate}}</p>
             <textarea rows="5" formControlName="Description"></textarea> 
         </div>
         <div class="field">
-            <p>State</p>
+            <p>{{ 'LOCATION.STATE' | translate}}</p>
             <select class="state-select" formControlName="State">
                 <option disabled selected>Choose state</option>
                 <option value="open">Open</option>
                 <option value="close">Close</option>
             </select>
         </div>
-        <button class="apply" *ngIf="isCreateAction"(click)="onCreateLocationClick()">Create</button>
-        <button class="apply" *ngIf="!isCreateAction"(click)="onEditLocationClick()">Apply changes</button>
+        <button class="apply" *ngIf="isCreateAction"(click)="onCreateLocationClick()">{{ 'BUTTON.CREATE' | translate}}</button>
+        <button class="apply" *ngIf="!isCreateAction"(click)="onEditLocationClick()">{{ 'BUTTON.CHANGE' | translate}}</button>
     </form>
 </div>
 
@@ -68,7 +68,7 @@
     <div class="modal-dialog modal-centred modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="notificationModalLongTitle">Notification</h5>
+                <h5 class="modal-title" id="notificationModalLongTitle">{{ 'NOTIFICATION.TITLE' | translate}}</h5>
                 <button class="closeButtonTimes" data-bs-dismiss="modal" aria-label="Close">
                     <fa-icon class="closeFaTimes" [icon]="faTimes"></fa-icon>
                 </button>
@@ -86,17 +86,17 @@
     <div class="modal-dialog modal-centred modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="removeModalLongTitle">Remove Item</h5>
+                <h5 class="modal-title" id="removeModalLongTitle">{{ 'ITEM.REMOVE_TITLE' | translate}}</h5>
                 <button class="closeButtonTimes" data-bs-dismiss="modal" aria-label="Close">
                     <fa-icon class="closeFaTimes" [icon]="faTimes"></fa-icon>
                 </button>
             </div>
             <div class="modal-body justify-content-center">
-                <p class="resultText">Are you sure you want to remove this item?</p>
+                <p class="resultText">{{ 'ITEM.REMOVE_BODY' | translate}}</p>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="yesButton" data-bs-dismiss="modal"
-                    (click)="onRemoveItemClick()">Yes</button>
-                    <button type="button" class="noButton" data-bs-dismiss="modal">No</button>
+                    (click)="onRemoveItemClick()">{{ 'BUTTON.YES' | translate}}</button>
+                    <button type="button" class="noButton" data-bs-dismiss="modal">{{ 'BUTTON.NO' | translate}}</button>
                 </div>
             </div>
         </div>

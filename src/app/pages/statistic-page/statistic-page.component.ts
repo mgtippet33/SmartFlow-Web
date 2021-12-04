@@ -19,6 +19,7 @@ import { CookieService } from 'src/app/services/cookie-service';
 import { EventStatistic } from 'src/app/Models/event-statistic';
 import { LocationStatistic } from 'src/app/Models/location-statistic';
 import { formatDate } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 export type EventTopOptions = {
     series: ApexAxisChartSeries;
@@ -56,7 +57,8 @@ export class StatisticPageComponent implements OnInit {
     eventStatistics: Array<EventStatistic>;
     locationStatistics: Array<LocationStatistic>;
 
-    constructor(private router: Router, private httpService: HttpService) { }
+    constructor(private router: Router, private httpService: HttpService,
+        public translate: TranslateService) { }
 
     ngOnInit(): void {
         this.token = CookieService.getCookie('JWT_token')
@@ -148,7 +150,12 @@ export class StatisticPageComponent implements OnInit {
                     statistic.location_name = data[i]['locationName'];
                     statistic.visits = data[i]['visits'];
                     var date = data[i]['dateVisits'].split("T")[0];
-                    statistic.date = formatDate(date, 'MM/dd/yyyy', 'en-US');
+                    if (this.translate.currentLang == 'en') {
+                        statistic.date = formatDate(date, 'MM/dd/yyyy', 'en-US');
+                    }
+                    else {
+                        statistic.date = formatDate(date, 'dd/MM/yyyy', 'en-US');
+                    }
                     statistics.push(statistic);
 
                 }

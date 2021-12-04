@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { TranslateService } from '@ngx-translate/core';
 import * as bootstrap from 'bootstrap';
 import { HttpService } from 'src/app/api/http.service';
 import { User } from 'src/app/Models/user';
@@ -23,7 +24,7 @@ export class UserViewPageComponent implements OnInit {
     isCreateAction: boolean = true;
 
     constructor(private router: Router, private httpService: HttpService,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute, public translate: TranslateService) { }
 
 	ngOnInit(): void {
         this.form = new FormGroup({
@@ -109,7 +110,9 @@ export class UserViewPageComponent implements OnInit {
                 },
                 (error: any) => {
                     console.log(error);
-                    this.notification = "An account with such data already exists.";
+                    this.translate.get('ACCOUNT.EXSIST').subscribe(
+                        (res: string) => this.notification = res
+                    );
                     this.openNotificationModal();
                 }
             );
@@ -119,7 +122,9 @@ export class UserViewPageComponent implements OnInit {
 		if (this.form.get("Username").value.length == 0 ||
                 this.form.get("Email").value.length == 0 ||
                 this.form.get("Role").value.length == 0) {
-			this.notification = "You must fill in all the details of the user profile."
+                    this.translate.get('ACCOUNT.NOTIFICATION').subscribe(
+                        (res: string) => this.notification = res
+                    );
 			this.openNotificationModal();
 			return;
 		}
@@ -139,7 +144,9 @@ export class UserViewPageComponent implements OnInit {
             },
 			(error: any) => {
 				console.log(error);
-				this.notification = "An account with such data already exists.";
+				this.translate.get('ACCOUNT.EXSIST').subscribe(
+					(res: string) => this.notification = res
+				);
 				this.openNotificationModal();
 			}
         );

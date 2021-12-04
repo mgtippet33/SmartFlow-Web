@@ -6,6 +6,7 @@ import { faPlusSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { MyEvent } from 'src/app/Models/event';
 import { CookieService } from 'src/app/services/cookie-service';
 import * as bootstrap from 'bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-event-page',
@@ -24,7 +25,8 @@ export class EventPageComponent implements OnInit {
     searchEvents: Array<MyEvent>;
     currentEventID: number;
 
-    constructor(private router: Router, private httpService: HttpService) { }
+    constructor(private router: Router, private httpService: HttpService,
+        public translate: TranslateService) { }
 
     ngOnInit(): void {
         this.searchEvents = this.events;

@@ -7,12 +7,16 @@
                 </figure>
             </div>
             <div class="col d-flex justify-content-center mt-3">
-                <p *ngIf="isAdmin" (click)="onUserClick()">Users</p>
-                <p (click)="onEventClick()">Events</p>
-                <p (click)="onStatisticsClick()">Statistics</p>
-                <p (click)="onProfileClick()">Account</p>
+                <p *ngIf="isAdmin" (click)="onUserClick()">{{ 'HEADER.USERS' | translate}}</p>
+                <p (click)="onEventClick()">{{ 'HEADER.EVENTS' | translate}}</p>
+                <p (click)="onStatisticsClick()">{{ 'HEADER.STATISTICS' | translate}}</p>
+                <p (click)="onProfileClick()">{{ 'HEADER.ACCOUNT' | translate}}</p>
             </div>
-            <div class="col d-flex justify-content-end"></div>
+            <div class="col d-flex justify-content-end mt-3">
+                <p (click)="translate.use('uk')">Uk</p>
+                <p>|</p>
+                <p (click)="translate.use('en')">En</p>
+            </div>
         </div>
     </header>
 </div>
