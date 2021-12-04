@@ -20,8 +20,9 @@
             <p>Role</p>
             <select class="role-select" formControlName="Role">
                 <option disabled selected>Choose role</option>
-                <option [disabled]="!isCreateAction" value="BusinessPartner">Business Partner</option>
                 <option [disabled]="!isCreateAction" value="Administrator">Administrator</option>
+                <option [disabled]="!isCreateAction" value="BusinessPartner">Business Partner</option>
+                <option [disabled]="!isCreateAction" value="Visitor">Visitor</option>
             </select>
         </div>
         <div class="row">

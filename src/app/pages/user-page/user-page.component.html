@@ -21,8 +21,11 @@
     
     <div class="custom-block" *ngFor="let user of searchUsers">
         <div class="row">
-            <div class="col-8">
+            <div class="col-4">
                 <h4 class="name ml-3 mt-4">UserName: {{user.username}}</h4>
+            </div>
+            <div class="col-4">
+                <h4 class="name ml-3 mt-4">Role: {{user.role}}</h4>
             </div>
             <div class="col d-flex justify-content-end margin-right-5">
                 <button type="button" class="editButton w-20 mr-3 mt-3 mb-3" 
