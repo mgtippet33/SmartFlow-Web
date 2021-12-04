@@ -221,4 +221,40 @@ export class HttpService {
             ApiConstants.statistics_url.toString() + eventID.toString() + "/";
         return this.http.get(statistics_url, {'headers': headers, observe: 'response'});
     }
+
+    getUsers(token: string, userID: number = null) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var user_url = ApiConstants.main_url.toString() + ApiConstants.admin_url.toString()
+        if (userID != null) {
+            user_url += userID.toString() + "/";
+        }
+        return this.http.get(user_url, { 'headers': headers, observe: 'response' });
+    }
+
+    updateUserProfileByAdmin(token: string, user: User) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var body;
+        if (user.password != null) {
+            body = {
+                email: user.email,
+                name: user.username,
+                password: user.password
+            };
+        } else {
+            body = {
+                email: user.email,
+                name: user.username
+            };
+        }
+        var user_url = ApiConstants.main_url.toString() + ApiConstants.admin_url.toString() +
+            user.user_id.toString() + "/";
+        return this.http.put(user_url, body, { 'headers': headers, observe: 'response' });
+    }
+
+    deleteUser(token: string, userID: number) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var user_url = ApiConstants.main_url.toString() + ApiConstants.admin_url.toString() +
+            userID.toString() + "/";
+        return this.http.delete(user_url, { 'headers': headers, observe: 'response' });
+    }
 }

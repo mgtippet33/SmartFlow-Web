@@ -7,6 +7,7 @@
                 </figure>
             </div>
             <div class="col d-flex justify-content-center mt-3">
+                <p *ngIf="isAdmin" (click)="onUserClick()">Users</p>
                 <p (click)="onEventClick()">Events</p>
                 <p (click)="onStatisticsClick()">Statistics</p>
                 <p (click)="onProfileClick()">Account</p>
