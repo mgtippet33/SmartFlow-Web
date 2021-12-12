@@ -1,0 +1,76 @@
+{
+    "HEADER": {
+        "USERS": "Users",
+        "EVENTS": "Events",
+        "STATISTICS": "Statistics",
+        "ACCOUNT": "Account"
+    },
+    "SEARCH": "Search",
+    "BUTTON": {
+        "EDIT": "Edit",
+        "REMOVE": "Remove",
+        "CREATE": "Create",
+        "CHANGE": "Apply changes",
+        "LOGOUT": "Log Out",
+        "YES": "Yes",
+        "NO": "No",
+        "IMAGE": "Select image",
+        "COORDINATES": "Specify coordinates"
+    },
+    "ACCOUNT": {
+        "TITLE": "Account",
+        "USERNAME": "User Name",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "ROLE": "Role",
+        "REMOVE_TITLE": "Remove User",
+        "REMOVE_BODY": "Are you sure you want to remove this user?",
+        "NOTIFICATION": "You must fill in all the details of the user profile.",
+        "EXSIST": "An account with such data already exists."
+    },
+    "NOTIFICATION": {
+        "TITLE": "Notification",
+        "IMAGE": "You can only add photos."
+    },
+    "EVENT": {
+        "TITLE": "Event",
+        "NAME": "Event Name",
+        "DESCRIPTION": "Description",
+        "OPENTIME": "Opening time",
+        "CLOSETIME": "Closing time",
+        "COORDINATES": "Coordinates",
+        "REMOVE_TITLE": "Remove Event",
+        "REMOVE_BODY": "Are you sure you want to remove this event?",
+        "NOTIFICATION": "You must fill in all the details of the event."
+    },
+    "LOCATION": {
+        "TITLE": "Location",
+        "NAME": "Location Name",
+        "DESCRIPTION": "Description",
+        "STATE": "State",
+        "REMOVE_TITLE": "Remove Location",
+        "REMOVE_BODY": "Are you sure you want to remove this location?",
+        "NOTIFICATION": "You must fill in all the details of the location."
+    },
+    "STATE": {
+        "OPEN": "Open",
+        "CLOSE": "Close"
+    },
+    "ITEM": {
+        "TITLE": "Item",
+        "NAME": "Item Name",
+        "DESCRIPTION": "Description",
+        "LINK": "Information Link",
+        "REMOVE_TITLE": "Remove item",
+        "REMOVE_BODY": "Are you sure you want to remove this item?",
+        "NOTIFICATION": "You must fill in all the details of the user item."
+    },
+    "STATISTICS": "Statistics",
+    "ROLE": {
+        "CHOOSE": "Choose role",
+        "ADMIN": "Administrator",
+        "VISITOR": "Visitor",
+        "PARTNER": "Business Partner"
+    },
+    "SELECT_EVENT": "Select event"
+}

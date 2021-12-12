@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="row">
+    <p class="title">{{ 'STATISTICS' | translate}}</p>
+</div>
+
+<div class="wrapper">
+    <div class="chart-background">
+        <apx-chart [series]="eventsTop.series" [chart]="eventsTop.chart" [xaxis]="eventsTop.xaxis"
+            [title]="eventsTop.title" [plotOptions]="eventsTop.plotOptions"
+            [dataLabels]="eventsTop.dataLabels" [yaxis]="eventsTop.yaxis"></apx-chart>
+    </div>
+    <div class="chart-background">
+        <apx-chart [series]="locationChart.series" [chart]="locationChart.chart"
+            [responsive]="locationChart.responsive" [plotOptions]="locationChart.plotOptions"
+            [xaxis]="locationChart.xaxis" [legend]="locationChart.legend" [fill]="locationChart.fill">
+        </apx-chart>
+    </div>
+</div>
+<div class="select-block text-end mt-3">
+    <select class="event-select" [ngModel]="eventStatistics" (ngModelChange)="onChange($event)">
+        <option disabled>{{ 'SELECT_EVENT' | translate }}</option>
+        <option [value]="event.event_id" *ngFor="let event of eventStatistics">{{event.event_name}}</option>
+    </select>
+</div>

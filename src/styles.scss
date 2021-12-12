@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/scss/bootstrap';
+
+body, html {
+    height: 100%;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body{
+    height: 100%;
+    background-image: url('assets/img/background.svg'); 
+    background-position: center center;
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+input[type=submit] {
+    color: black;
+    background-color: #ff9100cb;
+}
+
+* {
+    font-family: Cairo, sans-serif !important; 
+  }

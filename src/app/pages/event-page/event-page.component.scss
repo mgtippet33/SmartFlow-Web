@@ -1,0 +1,141 @@
+.search {
+    margin: 10px;
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    padding: 2px 23px 2px 30px;
+    outline: 0;
+    border: 0px;
+    background-color: #FFFFFF;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 20px;
+    left: 18px;
+    width: 14px;
+  }
+  
+  .clear-icon {
+    position: absolute;
+    top: 9px;
+    right: 8px;
+    width: 12px;
+    cursor: pointer;
+    visibility: hidden;
+  }
+
+  .wrapper {
+    position: relative;
+    display: flex;
+    min-width: 100px;
+  }
+
+  .wrapper-block {
+    padding: 10px;
+    margin: 0 20%;
+    background-color: #A8DADC;
+    border-radius: 20px;
+  }
+
+  .create-event {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .removeButton {
+    background-color: #50E08A;
+    border: none;
+    border-radius: 15px;
+    width: 180.23px;
+    height: 57px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+  }
+  
+  .editButton {
+    background-color: #FFDC97;
+    border: none;
+    border-radius: 15px;
+    width: 180.23px;
+    height: 57px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+  }
+
+  .custom-block{
+    border-radius:25px;
+    background:#94D2BD;
+    box-shadow: 2px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    text-align:center;
+    color:#333;
+    margin: 20px 7%;
+  }
+
+  .margin-right-5 {
+      margin-right: 5%;
+  }
+
+  .margin-left-8 {
+    margin-left: 8%;
+}
+
+  .description {
+      margin-left: 7%;
+      text-align: justify;
+  }
+
+  .name {
+    margin-left: 7%;
+    text-align: justify;
+}
+
+fa-icon{
+    margin-top: 3px;
+    padding: 4px;
+    font-size: 34px;
+    color: rgba(0, 0, 0, 0.74);;
+  }
+
+  .closeFaTimes {
+    color: black;
+    font-size: 21px;
+  }
+  
+  
+  .closeButtonTimes {
+  background-color: #FFDC97;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .yesButton {
+    background-color: #50E08A;
+    border: none;
+    border-radius: 15px;
+    width: 180.23px;
+    height: 57px;
+    margin-right: 2.5%;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+  }
+  
+  .noButton {
+    background-color: #FFDC97;
+    border: none;
+    border-radius: 15px;
+    width: 180.23px;
+    height: 57px;
+    margin-left: 2.5%;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+  }
