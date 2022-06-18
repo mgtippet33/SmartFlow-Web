@@ -257,4 +257,19 @@ export class HttpService {
             userID.toString() + "/";
         return this.http.delete(user_url, { 'headers': headers, observe: 'response' });
     }
+
+    getBackup(token: string) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var backup_url = ApiConstants.main_url.toString() + ApiConstants.backup_url.toString();
+        return this.http.get(backup_url, { 'headers': headers, observe: 'response' });
+    }
+
+    getRestore(token: string, restoreText: string) {
+        const headers = { 'Authorization': 'Bearer ' + token, 'content-type': 'application/json' }
+        var restore_url = ApiConstants.main_url.toString() + ApiConstants.restore_url.toString();
+        var body = {
+            RestoreText: restoreText
+        };
+        return this.http.post(restore_url, body, { 'headers': headers, observe: 'response' });
+    }
 }

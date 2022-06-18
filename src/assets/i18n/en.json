@@ -15,7 +15,10 @@
         "YES": "Yes",
         "NO": "No",
         "IMAGE": "Select image",
-        "COORDINATES": "Specify coordinates"
+        "COORDINATES": "Specify coordinates",
+        "BACKUP": "Select backup file and restore",
+        "RESTORE": "Get backup file",
+        "DOWNLOAD": "Download"
     },
     "ACCOUNT": {
         "TITLE": "Account",
@@ -26,11 +29,15 @@
         "REMOVE_TITLE": "Remove User",
         "REMOVE_BODY": "Are you sure you want to remove this user?",
         "NOTIFICATION": "You must fill in all the details of the user profile.",
-        "EXSIST": "An account with such data already exists."
+        "EXSIST": "An account with such data already exists.",
+        "BACKUP": "Backup/Restore",
+        "RESTORE_FAIL": "Something went wrong, please try again later",
+        "RESTORE_SUCCESS": "Database successfully restored"
     },
     "NOTIFICATION": {
         "TITLE": "Notification",
-        "IMAGE": "You can only add photos."
+        "IMAGE": "You can only add photos.",
+        "BACKUP": "You can only add backup file."
     },
     "EVENT": {
         "TITLE": "Event",

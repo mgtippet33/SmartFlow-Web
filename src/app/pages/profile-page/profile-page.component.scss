@@ -81,3 +81,19 @@ input{
   justify-content: center;
   align-items: center;
   }
+
+  .settings-button {
+    width: 200px;
+    height: auto;
+    display: block;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    border: 2px solid #50E08A;
+    margin: 30px auto 0;
+    background: #50E08A;
+    text-align: center;
+    cursor: pointer;
+  }

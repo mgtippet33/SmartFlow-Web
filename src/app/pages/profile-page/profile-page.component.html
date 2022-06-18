@@ -23,6 +23,20 @@
     </form>
 </div>
 
+<input *ngIf="isAdmin" type="file" id="changeFile" accept=".bak" style="visibility: hidden;" 
+    (change)="onFileChanged($event)" aria-hidden="true"/>
+<div *ngIf="isAdmin" class="row">
+    <p class="title">{{ 'ACCOUNT.BACKUP' | translate}}</p>
+</div>
+<div *ngIf="isAdmin" class="wrapper pb-4">
+    <div class="col-6">
+        <label class="settings-button" for="changeFile">{{ 'BUTTON.BACKUP' | translate}}</label>
+    </div>
+    <div class="col-6">
+        <a class="settings-button" [href]="fileUrl" download="backup.bak" (click)="getBackupFile()">{{ 'BUTTON.RESTORE' | translate}}</a>
+    </div>
+</div>
+
 <!-- Notification Modal -->
 <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalTitle"
     aria-hidden="true">

@@ -8,6 +8,7 @@ import { HttpService } from 'src/app/api/http.service';
 import { User } from 'src/app/Models/user';
 import { CookieService } from 'src/app/services/cookie-service';
 import { CommonValidators } from 'src/app/validators/common-validators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-profile-page',
@@ -21,9 +22,11 @@ export class ProfilePageComponent implements OnInit {
 	form: FormGroup;
 	user: User = new User();
 	notification: string;
+	fileUrl: any;
+	isAdmin: boolean = false;
 
 	constructor(private router: Router, private httpService: HttpService,
-		public translate: TranslateService) { }
+		public translate: TranslateService, private sanitizer: DomSanitizer) { }
 
 	ngOnInit(): void {
         this.form = new FormGroup({
@@ -41,6 +44,7 @@ export class ProfilePageComponent implements OnInit {
 				data = data['body'];
 				this.user.email = data['email'];
 				this.user.username = data['name'];
+				this.isAdmin = data['role'] == 'Administrator' ? true: false;
 
 				this.initializeData();
 			}
@@ -99,5 +103,71 @@ export class ProfilePageComponent implements OnInit {
 		CookieService.removeCookie();
 		this.router.navigateByUrl('/');
 	}
+
+	onFileChanged(event: any) {
+		const file = event.target.files[0];
+        if(file.name.indexOf(".bak") == -1) {
+            this.translate.get('NOTIFICATION.BACKUP').subscribe(
+                (res: string) => this.notification = res
+            );
+            this.openNotificationModal();
+            return;
+        }
+		const reader = new FileReader();
+		reader.readAsBinaryString(file);
+		reader.onload = () => {
+			console.log(reader.result.toString());
+			this.httpService.getRestore(this.user.token, reader.result.toString()).subscribe(
+				(data: any) => {
+					if (data.status == 200) {
+						this.translate.get('ACCOUNT.RESTORE_SUCCESS').subscribe(
+							(res: string) => this.notification = res
+						);
+						this.openNotificationModal();
+					}
+					else {
+						this.translate.get('ACCOUNT.RESTORE_FAIL').subscribe(
+							(res: string) => this.notification = res
+						);
+						this.openNotificationModal();
+					}
+				},
+				(error: any) => {
+					console.log(error);
+					this.translate.get('ACCOUNT.RESTORE_FAIL').subscribe(
+						(res: string) => this.notification = res
+					);
+					this.openNotificationModal();
+				}
+			);
+		};
+    }
+
+	getBackupFile() {
+		this.httpService.getBackup(this.user.token).subscribe(
+			(data: any) => {
+				if (data.status == 200) {
+					const message = data['body']['message'];
+					const blob = new Blob([message], { type: 'application/octet-stream' });
+				
+					this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+				}
+				else {
+					this.translate.get('ACCOUNT.RESTORE_FAIL').subscribe(
+						(res: string) => this.notification = res
+					);
+					this.openNotificationModal();
+				}
+			},
+			(error: any) => {
+				console.log(error);
+				this.translate.get('ACCOUNT.RESTORE_FAIL').subscribe(
+					(res: string) => this.notification = res
+				);
+				this.openNotificationModal();
+			}
+		)
+	}
+
 
 }
